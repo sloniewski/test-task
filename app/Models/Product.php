@@ -21,7 +21,7 @@ class Product extends Model implements \JsonSerializable
 
     public function warehouseProduct(): HasOne
     {
-        return $this->hasOne(WarehouseProduct::class, 'id', 'id');
+        return $this->hasOne(WarehouseProduct::class, 'identity', 'identity');
     }
 
     public function jsonSerialize(): array

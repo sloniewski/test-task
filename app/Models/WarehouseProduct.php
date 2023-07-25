@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class WarehouseProduct extends Model implements \JsonSerializable
 {
@@ -12,7 +13,8 @@ class WarehouseProduct extends Model implements \JsonSerializable
     public $connection = 'pgsql';
 
     public $fillable = [
-        'name'
+        'name',
+        'identity',
     ];
 
     public function jsonSerialize(): array
@@ -27,5 +29,10 @@ class WarehouseProduct extends Model implements \JsonSerializable
     public static function classFillable(): array
     {
         return (new self)->fillable;
+    }
+
+    public function product(): HasOne
+    {
+        return $this->hasOne(Product::class, 'identity', 'identity');
     }
 }

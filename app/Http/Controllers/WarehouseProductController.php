@@ -6,6 +6,7 @@ use App\Http\Requests\StoreWarehouseProductRequest;
 use App\Http\Requests\UpdateWarehouseProductRequest;
 use App\Models\WarehouseProduct;
 use Illuminate\Support\Facades\Log;
+use App\Http\Resources\WarehouseProductCollection;
 
 class WarehouseProductController extends Controller
 {
@@ -14,7 +15,7 @@ class WarehouseProductController extends Controller
      */
     public function index()
     {
-        return WarehouseProduct::all();
+        return new WarehouseProductCollection(WarehouseProduct::paginate(15));
     }
 
     /**
